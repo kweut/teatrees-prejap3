@@ -3,10 +3,10 @@ package com.epam.prejap.teatrees.game;
 import com.epam.prejap.teatrees.block.*;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.stream.IntStream;
+
+import static org.testng.Assert.assertTrue;
 
 @Test
 public class PlayfieldTest {
@@ -262,4 +262,26 @@ public class PlayfieldTest {
         sa.assertEquals(playfield.grid, expectedGrid);
         sa.assertAll();
     }
+
+    @Test(groups = "nextBlock")
+    public void shouldHintBlockBecomeNewBlock() {
+        // given
+        Playfield playfield = new Playfield(10, 10, new BlockFeed(), new FakePrinter());
+        Block hintBlock = playfield.getHintBlock();
+
+        // when
+        playfield.nextBlock();
+
+        // then
+        assertTrue(hintBlock == playfield.getBlock());
+    }
+}
+
+class FakePrinter extends Printer {
+    FakePrinter() {
+        super(System.out);
+    }
+
+    @Override
+    void draw(byte[][] grid) {}
 }

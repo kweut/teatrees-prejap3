@@ -139,4 +139,18 @@ public class Playfield {
     private interface BrickAction {
         void act(int i, int j, byte dot);
     }
+
+    /**
+     * Method created only for testing.
+     */
+    Block getBlock() {
+        return block;
+    }
+
+    /**
+     * Method created only for testing.
+     */
+    Block getHintBlock() {
+        return hintBlock;
+    }
 }

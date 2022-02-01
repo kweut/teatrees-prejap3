@@ -9,6 +9,7 @@
                 <include name="grid"/>
                 <include name="nextMove"/>
                 <include name="pause"/>
+                <include name="nextBlock"/>
             </define>
             <run>
                 <include name="unit-tests"/>
@@ -25,6 +26,7 @@
             <class name="com.epam.prejap.teatrees.game.PlayfieldTest"/>
             <class name="com.epam.prejap.teatrees.player.RandomPlayerTest"/>
             <class name="com.epam.prejap.teatrees.pause.PauseTest"/>
+            <class name="com.epam.prejap.teatrees.game.PlayfieldTest"/>
         </classes>
     </test>
     <test name="Integration-tests">
