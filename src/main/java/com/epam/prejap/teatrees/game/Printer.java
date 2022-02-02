@@ -21,7 +21,7 @@ public class Printer {
         border(grid[0].length);
     }
 
-    private void drawHint(int width, Block hintBlock) {
+    void drawHint(int width, Block hintBlock) {
         for (int i = 0; i < hintBlock.rows(); i++) {
             startRow();
             spaces((width - hintBlock.cols()) / 2);
@@ -33,18 +33,18 @@ public class Printer {
         }
     }
 
-    void spaces(int times) {
-        out.print(" ".repeat(times));
-    }
-
     void drawPlayfield(byte[][] grid) {
         for (byte[] bytes : grid) {
             startRow();
             for (byte aByte : bytes) {
-                print(aByte);
-            }
+            print(aByte);
+        }
             endRow();
         }
+    }
+
+    void spaces(int times) {
+        out.print(" ".repeat(times));
     }
 
     void clear() {
