@@ -264,7 +264,7 @@ public class PlayfieldTest {
     }
 
     @Test(groups = "nextBlock")
-    public void shouldHintBlockBecomeNewBlock() {
+    public void shouldHintBlockBecomeCurrentlyPlayedBlock() {
         // given
         Playfield playfield = new Playfield(10, 10, new BlockFeed(), new FakePrinter());
         Block hintBlock = playfield.getHintBlock();
