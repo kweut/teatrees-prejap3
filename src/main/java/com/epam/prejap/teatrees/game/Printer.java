@@ -15,6 +15,17 @@ public class Printer {
     void draw(byte[][] grid, Block hintBlock) {
         clear();
         border(grid[0].length);
+        for (int i = 0; i < hintBlock.rows(); i++) {
+            startRow();
+            out.print(" ".repeat((grid[0].length - hintBlock.cols()) / 2));
+            for (int j = 0; j < hintBlock.cols(); j++) {
+                print(hintBlock.dotAt(i, j));
+            }
+            out.print(" ".repeat(grid[0].length - (grid[0].length - hintBlock.cols()) / 2 - hintBlock.cols()));
+            endRow();
+        }
+
+        border(grid[0].length);
         for (byte[] bytes : grid) {
             startRow();
             for (byte aByte : bytes) {
