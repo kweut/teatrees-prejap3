@@ -117,7 +117,7 @@ public class Playfield {
 
     private void show() {
         forEachBrick((i, j, dot) -> grid.fillCell(row + i, col + j, dot));
-        printer.draw(grid.getGrid());
+        printer.draw(grid.getGrid(), hintBlock);
     }
 
     private void doMove(int rowOffset, int colOffset) {

@@ -1,5 +1,7 @@
 package com.epam.prejap.teatrees.game;
 
+import com.epam.prejap.teatrees.block.Block;
+
 import java.io.PrintStream;
 
 public class Printer {
@@ -10,7 +12,7 @@ public class Printer {
         this.out = out;
     }
 
-    void draw(byte[][] grid) {
+    void draw(byte[][] grid, Block hintBlock) {
         clear();
         border(grid[0].length);
         for (byte[] bytes : grid) {

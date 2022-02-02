@@ -283,5 +283,5 @@ class FakePrinter extends Printer {
     }
 
     @Override
-    void draw(byte[][] grid) {}
+    void draw(byte[][] grid, Block hintBlock) {}
 }
