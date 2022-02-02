@@ -15,17 +15,29 @@ public class Printer {
     void draw(byte[][] grid, Block hintBlock) {
         clear();
         border(grid[0].length);
+        drawHint(grid[0].length, hintBlock);
+        border(grid[0].length);
+        drawPlayfield(grid);
+        border(grid[0].length);
+    }
+
+    private void drawHint(int width, Block hintBlock) {
         for (int i = 0; i < hintBlock.rows(); i++) {
             startRow();
-            out.print(" ".repeat((grid[0].length - hintBlock.cols()) / 2));
+            spaces((width - hintBlock.cols()) / 2);
             for (int j = 0; j < hintBlock.cols(); j++) {
                 print(hintBlock.dotAt(i, j));
             }
-            out.print(" ".repeat(grid[0].length - (grid[0].length - hintBlock.cols()) / 2 - hintBlock.cols()));
+            spaces(width - (width - hintBlock.cols()) / 2 - hintBlock.cols());
             endRow();
         }
+    }
 
-        border(grid[0].length);
+    void spaces(int times) {
+        out.print(" ".repeat(times));
+    }
+
+    void drawPlayfield(byte[][] grid) {
         for (byte[] bytes : grid) {
             startRow();
             for (byte aByte : bytes) {
@@ -33,7 +45,6 @@ public class Printer {
             }
             endRow();
         }
-        border(grid[0].length);
     }
 
     void clear() {
