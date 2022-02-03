@@ -21,6 +21,10 @@ public class Printer {
         border(grid[0].length);
     }
 
+    /**
+     * Draws a frame containing the hintBlock above the playfield. Frame's height is dynamic and depends on the height
+     * of hintBlock.
+     */
     void drawHint(int width, Block hintBlock) {
         for (int i = 0; i < hintBlock.rows(); i++) {
             startRow();
@@ -37,8 +41,8 @@ public class Printer {
         for (byte[] bytes : grid) {
             startRow();
             for (byte aByte : bytes) {
-            print(aByte);
-        }
+                print(aByte);
+            }
             endRow();
         }
     }
