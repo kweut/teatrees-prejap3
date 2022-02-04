@@ -5,11 +5,14 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Field;
 
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 @Test
 public class PlayfieldTest {
+    private final Class<Playfield> playfieldClass = Playfield.class;
+
     private Playfield createPlayfield(byte[][] grid) {
         Printer printer = new Printer(new PrintStream(new ByteArrayOutputStream()));
         BlockFeed blockFeed = new BlockFeed();
@@ -267,13 +270,29 @@ public class PlayfieldTest {
     public void shouldHintBlockBecomeCurrentlyPlayedBlock() {
         // given
         Playfield playfield = new Playfield(10, 10, new BlockFeed(), new FakePrinter());
-        Block hintBlock = playfield.getHintBlock();
+        Object hintBlock = getBlock(playfield, "hintBlock");
 
         // when
         playfield.nextBlock();
 
         // then
-        assertTrue(hintBlock == playfield.getBlock());
+        assertEquals(getBlock(playfield, "block"), hintBlock);
+    }
+
+    private Object getBlock(Playfield playfield, String block) {
+        Object hintBlock = null;
+        Field[] fields = playfieldClass.getFields();
+        try {
+            for (Field field : fields) {
+                if (field.getName().equals(block)) {
+                    field.setAccessible(true);
+                    hintBlock = field.get(playfield);
+                }
+            }
+        } catch (IllegalAccessException e) {
+            System.err.println("Illegal access.");
+        }
+        return hintBlock;
     }
 }
 
