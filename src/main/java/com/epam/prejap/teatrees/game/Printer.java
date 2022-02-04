@@ -25,7 +25,7 @@ public class Printer {
      * Draws a frame containing the hintBlock above the playfield. Frame's height is dynamic and depends on the height
      * of hintBlock.
      */
-    void drawHint(int width, Block hintBlock) {
+    private void drawHint(int width, Block hintBlock) {
         for (int i = 0; i < hintBlock.rows(); i++) {
             startRow();
             spaces((width - hintBlock.cols()) / 2);
@@ -37,7 +37,7 @@ public class Printer {
         }
     }
 
-    void drawPlayfield(byte[][] grid) {
+    private void drawPlayfield(byte[][] grid) {
         for (byte[] bytes : grid) {
             startRow();
             for (byte aByte : bytes) {
@@ -47,27 +47,27 @@ public class Printer {
         }
     }
 
-    void spaces(int times) {
+    private void spaces(int times) {
         out.print(" ".repeat(times));
     }
 
-    void clear() {
+    private void clear() {
         out.print("\u001b[2J\u001b[H");
     }
 
-    void print(byte dot) {
+    private void print(byte dot) {
         out.format(dot == 0 ? " " :"#");
     }
 
-    void startRow() {
+    private void startRow() {
         out.print("|");
     }
 
-    void endRow() {
+    private void endRow() {
         out.println("|");
     }
 
-    void border(int width) {
+    private void border(int width) {
         out.println("+" + "-".repeat(width) + "+");
     }
 }
