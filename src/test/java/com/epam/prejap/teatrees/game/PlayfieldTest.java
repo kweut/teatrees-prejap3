@@ -267,7 +267,7 @@ public class PlayfieldTest {
     }
 
     @Test(groups = "nextBlock")
-    public void shouldHintBlockBecomeCurrentlyPlayedBlock() {
+    public void shouldHintBlockBecomeCurrentlyPlayedBlock() throws IllegalAccessException {
         // given
         Playfield playfield = new Playfield(10, 10, new BlockFeed(), new FakePrinter());
         Object hintBlock = getBlock(playfield, "hintBlock");
@@ -279,18 +279,14 @@ public class PlayfieldTest {
         assertEquals(getBlock(playfield, "block"), hintBlock);
     }
 
-    private Object getBlock(Playfield playfield, String block) {
+    private Object getBlock(Playfield playfield, String block) throws IllegalAccessException {
         Object hintBlock = null;
         Field[] fields = playfieldClass.getFields();
-        try {
-            for (Field field : fields) {
-                if (field.getName().equals(block)) {
-                    field.setAccessible(true);
-                    hintBlock = field.get(playfield);
-                }
+        for (Field field : fields) {
+            if (field.getName().equals(block)) {
+                field.setAccessible(true);
+                hintBlock = field.get(playfield);
             }
-        } catch (IllegalAccessException e) {
-            System.err.println("Illegal access.");
         }
         return hintBlock;
     }
