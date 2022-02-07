@@ -16,6 +16,7 @@
         </groups>
         <classes>
             <class name="com.epam.prejap.teatrees.block.ZBlockTest"/>
+            <class name="com.epam.prejap.teatrees.block.YBlockTest"/>
             <class name="com.epam.prejap.teatrees.block.RotatedBlock"/>
             <class name="com.epam.prejap.teatrees.block.SBlockTest"/>
             <class name="com.epam.prejap.teatrees.game.WaiterTest"/>
