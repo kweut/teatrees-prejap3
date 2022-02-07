@@ -292,6 +292,15 @@ public class PlayfieldTest {
     }
 }
 
+/**
+ * It's used only in shouldHintBlockBecomeCurrentlyPlayedBlock test.
+ * Tested method Playfield::nextBlock starts a method call chain that ends with Printer::draw. Printing is outside
+ * the scope of this test thus instance of this class is passed to Playfield's constructor.
+ *
+ * @see PlayfieldTest#shouldHintBlockBecomeCurrentlyPlayedBlock()
+ * @see Playfield#nextBlock()
+ * @see Printer#draw(byte[][], Block)
+ */
 class FakePrinter extends Printer {
     FakePrinter() {
         super(System.out);
