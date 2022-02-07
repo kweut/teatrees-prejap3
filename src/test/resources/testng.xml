@@ -9,6 +9,7 @@
                 <include name="grid"/>
                 <include name="nextMove"/>
                 <include name="pause"/>
+                <include name="nextBlock"/>
             </define>
             <run>
                 <include name="unit-tests"/>
